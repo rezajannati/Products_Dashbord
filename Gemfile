@@ -1,4 +1,23 @@
 source 'https://rubygems.org'
+ruby '2.1.0'
+
+gem 'font-awesome-less'
+gem 'font-awesome-sass'
+
+
+gem 'less-rails'
+
+gem 'therubyracer'
+
+gem 'thin'
+
+group :development, :test do
+	gem 'sqlite3'
+end
+
+group :production do
+	gem 'pg'
+end
 gem 'hirb'
 gem 'bootstrap-sass', '~> 3.1.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
