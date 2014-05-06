@@ -1,0 +1,42 @@
+<div class='container'>
+	<h1>Product Inventory</h1>
+	<div class = "row">
+		<div class="col-sm-8">
+			<div class = 'tgreen'>
+				<%= flash[:notice] if !flash[:notice].blank? %><br>
+			</div>
+		</div>
+		<div class="col-sm-4">
+		</div>
+	</div>
+	<table class ='table table-striped'>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>Category</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @get_products.each do |i| %>
+				<tr>
+					<td><%= i.name %></td>
+					<td><%= i.description %></td>
+					<td>$<%= i.price %></td>
+					
+					<td><%= i.category.name %>
+					</td>
+					<td>
+						<a class = 'btn btn-xs btn-info'    href="/products/<%= i.id %>">Show</a>
+						<a class = 'btn btn-xs btn-warning' href="/products/<%= i.id %>/edit">Edit</a>
+						<a class = 'btn btn-xs btn-danger'  href="/products/<%= i.id %>/destroy">Delete</a>
+					</td>
+				</tr>
+			<% end%>
+
+		</tbody>
+	</table>
+		<a class = 'btn btn-primary btn-lg btn-block' href="/products/new">New Product</a>
+</div>

@@ -1,0 +1,50 @@
+<div class='container'>
+	<h1>Show Product</h1>
+	<table class = 'table table-striped'>
+		<thead>
+			<tr>
+				<th>Category</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%= @product.category.name %></td>
+				<td><%= @product.name%></td>
+				<td><%= @product.description%></td>
+				<td>$<%=@product.price%></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class = 'row'>
+		<div class = 'col-md-6'>
+			<%= form_for(:com, :url => {:controller => 'products', :action => 'create_com'}) do |c| %>
+				<%= hidden_field(:product, :id)%>
+				<%= c.label :comment %>
+				<%= c.text_field :comment %>
+				<%= c.submit('Post Comment',:class => 'btn btn-danger') %>
+			<%end%>
+		</div>
+		
+		<div class = 'col-md-6'>
+			<table class='table table-striped'>
+				<thead>
+					<th>Comment</th>
+					<th>TimeStamp</th>
+				</thead>
+				<tbody>
+					<% @get_comments.each do |i| %>
+					<tr>
+						<td><%= i.comment %></td>
+						<td><%= i.created_at.strftime("%A %B %d %Y :: %I:%M:%S %p") %></td>
+					</tr>
+					<%end%>
+				</tbody> 
+			</table>
+		</div>
+	</div>
+	<a class="btn btn-warning btn-block" href="/products/<%=@product.id %>/edit">Edit</a>
+	<a class="btn btn-primary btn-block" href="/">Go Back</a>
+</div>

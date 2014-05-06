@@ -1,0 +1,31 @@
+<div class='container'>
+	<h1>Edit Product Info</h1>
+	<%= form_for(:item, :url => { action: "update"}) do |f|%>
+		<input type="hidden" name='_method' value='patch'>
+		<table class ='table'>
+			<tbody>
+				<tr>
+					<td><%= f.label :name%></td>
+					<td><%= f.text_field :name, :value => @edit[:name] %></td>
+				</tr>
+				<tr>
+					<td><%= f.label :description %></td>
+					<td><%= f.text_field :description, :value => @edit[:description]  %></td>
+				</tr>
+				<tr>
+					<td><%= f.label :price %></td>
+					<td><%= f.number_field(:price, in: 0.00..999999.00,step: 0.01,:value => @edit[:price]) %></td>
+				</tr>
+				<tr>
+					<td><%= f.label :category %></td>
+					<td><%= f.select(:category_id, options_for_select(@category,@edit.category_id))%></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><%= f.submit ('Update'), :class => 'btn btn-warning'%></td>
+				</tr>
+			</tbody>
+		</table>
+	<% end %>
+	<a class="btn btn-primary btn-block" href="/">Go Back</a>
+</div>
